@@ -1,0 +1,21 @@
+name = "kitty/queue"
+version = "0.1.0"
+description = "queue"
+authors = ["kimpure"]
+license = "MIT"
+
+[target]
+environment = "roblox"
+
+[indices]
+default = "https://github.com/pesde-pkg/index"
+
+[dependencies]
+greentea = { name = "corecii/greentea", version = "^0.4.11", target = "lune" }
+
+
+[dev_dependencies]
+luau_lsp = { name = "pesde/luau_lsp", version = "^1.38.1", target = "lune" }
+selene = { name = "pesde/selene", version = "^0.27.1", target = "lune" }
+stylua = { name = "pesde/stylua", version = "^2.0.2", target = "lune" }
+luau_check = { name = "jiwonz/luau_check", version = "^0.2.2", target = "lune" }
