@@ -1,8 +1,0 @@
-name = "multitarget/root"
-version = "0.0.0"
-target = "luau"
-
-[workspace."kitty/queue"]
-roblox = "roblox"
-lune = "lune"
-luau = "luau"
