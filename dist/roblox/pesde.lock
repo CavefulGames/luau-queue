@@ -1,0 +1,19 @@
+name = "kitty/queue"
+version = "0.1.0"
+target = "roblox"
+
+[graph."jiwonz/greentea_luau@0.1.0 roblox"]
+direct = ["greentea_luau", { name = "jiwonz/greentea_luau", version = "^0.1.0" }, "standard"]
+resolved_ty = "standard"
+
+[graph."jiwonz/greentea_luau@0.1.0 roblox".pkg_ref]
+ref_ty = "pesde"
+index_url = "https://github.com/pesde-pkg/index"
+
+[graph."jiwonz/task@0.1.0 roblox"]
+direct = ["task", { name = "jiwonz/task", version = "^0.1.0" }, "standard"]
+resolved_ty = "standard"
+
+[graph."jiwonz/task@0.1.0 roblox".pkg_ref]
+ref_ty = "pesde"
+index_url = "https://github.com/pesde-pkg/index"

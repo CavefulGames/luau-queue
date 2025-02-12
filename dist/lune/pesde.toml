@@ -1,0 +1,21 @@
+authors = ["kimpure"]
+description = "queue"
+includes = [
+    "src/**",
+    "pesde.toml",
+    "LICENCE.md",
+    "README.md",
+]
+license = "MIT"
+name = "kitty/queue"
+version = "0.1.0"
+
+[indices]
+default = "https://github.com/pesde-pkg/index"
+
+[target]
+environment = "lune"
+
+[dependencies]
+task = { name = "jiwonz/task", version = "^0.1.0" }
+greentea_luau = { name = "jiwonz/greentea_luau", version = "^0.1.0", target = "luau" }

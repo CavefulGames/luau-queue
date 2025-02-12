@@ -1,0 +1,22 @@
+name = "kitty/queue"
+version = "0.1.0"
+target = "lune"
+
+[graph."jiwonz/greentea_luau@0.1.0 luau"]
+direct = ["greentea_luau", { name = "jiwonz/greentea_luau", version = "^0.1.0", target = "luau" }, "standard"]
+resolved_ty = "standard"
+
+[graph."jiwonz/greentea_luau@0.1.0 luau".pkg_ref]
+ref_ty = "pesde"
+index_url = "https://github.com/pesde-pkg/index"
+
+[graph."jiwonz/greentea_luau@0.1.0 luau".pkg_ref.dependencies]
+luau_check = [{ name = "jiwonz/luau_check", version = "^0.3.5", index = "https://github.com/daimond113/pesde-index", target = "lune" }, "dev"]
+
+[graph."jiwonz/task@0.1.0 lune"]
+direct = ["task", { name = "jiwonz/task", version = "^0.1.0" }, "standard"]
+resolved_ty = "standard"
+
+[graph."jiwonz/task@0.1.0 lune".pkg_ref]
+ref_ty = "pesde"
+index_url = "https://github.com/pesde-pkg/index"
