@@ -3,21 +3,18 @@ version = "0.1.0"
 description = "queue"
 authors = ["kimpure"]
 license = "MIT"
+includes = [ "src/**", "pesde.toml", "LICENCE.md", "README.md" ]
 
 [target]
-environment = "roblox"
+environment = "lune"
 
 [indices]
 default = "https://github.com/pesde-pkg/index"
 
 [dependencies]
-greentea = { name = "corecii/greentea", version = "^0.4.11", target = "lune" }
-
+greentea_luau = { name = "jiwonz/greentea_luau", version = "^0.1.0", target = "luau" }
+task = { name = "jiwonz/task", version = "^0.1.0" }
 
 [dev_dependencies]
-luau_lsp = { name = "pesde/luau_lsp", version = "^1.38.1", target = "lune" }
-selene = { name = "pesde/selene", version = "^0.27.1", target = "lune" }
-stylua = { name = "pesde/stylua", version = "^2.0.2", target = "lune" }
-luau_check = { name = "jiwonz/luau_check", version = "^0.2.2", target = "lune" }
-multitarget = { name = "jiwonz/multitarget", version = "^0.1.0", target = "lune" }
 darklua = { name = "pesde/darklua", version = "^0.16.0", target = "lune" }
+multitarget = { name = "jiwonz/multitarget", version = "^0.2.5", target = "lune" }

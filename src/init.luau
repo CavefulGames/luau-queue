@@ -1,15 +1,15 @@
-local task = require("@lune/task")
-local greentea = require("../lune_packages/greentea")
+local gt = require("../luau_packages/greentea_luau")
+local task = require('../lune_packages/task')
 
-local NumberBuild = greentea.build(greentea.number())
+local NumberBuild = gt.build(gt.number())
 
-local FunctionBuild = greentea.build(greentea.anyfn())
+local FunctionBuild = gt.build(gt.anyfn())
 
-local QueueBuildType = greentea.build(greentea.table({
-	taskDelay = greentea.optional(greentea.number()),
-	autoRun = greentea.optional(greentea.boolean()),
-	isRun = greentea.boolean(),
-	queue = greentea.struct({ [greentea.number()] = greentea.anyfn() }),
+local QueueBuildType = gt.build(gt.table({
+	taskDelay = gt.optional(gt.number()),
+	autoRun = gt.optional(gt.boolean()),
+	isRun = gt.boolean(),
+	queue = gt.struct({ [gt.number()] = gt.anyfn() }),
 }))
 
 export type Queue = typeof(setmetatable({} :: typeof(QueueBuildType:type()), {} :: QueueImpl))
@@ -25,7 +25,7 @@ type QueueImpl = {
 local Queue = {} :: QueueImpl
 Queue.__index = Queue
 
-function queueIs(value)
+local function queueIs(value)
 	if type(value) == "table" and getmetatable(value) == Queue then
 		QueueBuildType:assert(value)
 
@@ -34,7 +34,7 @@ function queueIs(value)
 	return false
 end
 
-local QueueType = greentea.build(greentea.custom(queueIs, "Queue") :: Queue)
+local QueueType = gt.build(gt.custom(queueIs, "Queue") :: Queue)
 
 function Queue.new(taskDelay, autoRun)
 	NumberBuild:assert(taskDelay)
@@ -89,7 +89,5 @@ function Queue.run(self)
 		run()
 	end	
 end
-
-local mu = require('../lune_packages/multitarget')
 
 return Queue
