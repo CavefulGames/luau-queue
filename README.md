@@ -11,4 +11,5 @@ pesde add caveful_games/luau-queue
 ## using lib
 [greentea-luau](https://github.com/jiwonz/greentea-luau) <br>
 [luau-task](https://github.com/jiwonz/luau-task) <br>
-[pesde-multitarget](https://github.com/jiwonz/pesde-multitarget)
+[pesde-multitarget](https://github.com/jiwonz/pesde-multitarget) <br>
+[darklua](https://github.com/seaofvoices/darklua)
