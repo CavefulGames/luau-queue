@@ -8,4 +8,3 @@ end)
 newQueue:add(function() 
 	print('world')
 end)
-
