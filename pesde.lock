@@ -104,7 +104,7 @@ selene = [{ name = "pesde/selene", version = "^0.27.1", index = "https://github.
 stylua = [{ name = "pesde/stylua", version = "^2.0.2", index = "https://github.com/pesde-pkg/index" }, "dev"]
 
 [graph."jiwonz/greentea_luau@0.1.0 luau"]
-direct = ["greentea_luau", { name = "jiwonz/greentea_luau", version = "^0.1.0", target = "luau" }, "standard"]
+direct = ["greentea_luau", { name = "jiwonz/greentea_luau", version = "^0.1.0", index = "default", target = "luau" }, "standard"]
 resolved_ty = "standard"
 
 [graph."jiwonz/greentea_luau@0.1.0 luau".pkg_ref]
@@ -147,7 +147,7 @@ selene = [{ name = "pesde/selene", version = "^0.27.1", index = "https://github.
 stylua = [{ name = "pesde/stylua", version = "^2.0.2", index = "https://github.com/daimond113/pesde-index", target = "lune" }, "dev"]
 
 [graph."jiwonz/multitarget@0.2.6 lune"]
-direct = ["multitarget", { name = "jiwonz/multitarget", version = "^0.2.5", target = "lune" }, "dev"]
+direct = ["multitarget", { name = "jiwonz/multitarget", version = "^0.2.5", index = "default", target = "lune" }, "dev"]
 resolved_ty = "dev"
 
 [graph."jiwonz/multitarget@0.2.6 lune".dependencies]
@@ -235,7 +235,7 @@ selene = [{ name = "pesde/selene", version = "^0.28.0", index = "https://github.
 stylua = [{ name = "pesde/stylua", version = "^2.0.2", index = "https://github.com/pesde-pkg/index" }, "dev"]
 
 [graph."jiwonz/task@0.1.0 lune"]
-direct = ["task", { name = "jiwonz/task", version = "^0.1.0" }, "standard"]
+direct = ["task", { name = "jiwonz/task", version = "^0.1.0", index = "default" }, "standard"]
 resolved_ty = "standard"
 
 [graph."jiwonz/task@0.1.0 lune".pkg_ref]
@@ -274,7 +274,7 @@ ref_ty = "pesde"
 index_url = "https://github.com/pesde-pkg/index"
 
 [graph."pesde/darklua@0.16.0 lune"]
-direct = ["darklua", { name = "pesde/darklua", version = "^0.16.0", target = "lune" }, "dev"]
+direct = ["darklua", { name = "pesde/darklua", version = "^0.16.0", index = "default", target = "lune" }, "dev"]
 resolved_ty = "dev"
 
 [graph."pesde/darklua@0.16.0 lune".dependencies]
