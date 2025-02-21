@@ -14,11 +14,65 @@ local QueueBuildType = gt.build(gt.table({
 
 export type Queue = typeof(setmetatable({} :: typeof(QueueBuildType:type()), {} :: QueueImpl))
 
+--[=[
+	@class Queue
+
+    Queue
+]=]
 type QueueImpl = {
 	__index: QueueImpl,
+
+	--[=[
+        @within Queue
+
+        Create a Queue
+
+        ```luau
+        local queue = queue.new()
+        ```
+
+        @param taskDelay -- Delay time when repeating
+		@param autoRun -- Whether to do it automatically without doing queue:run()
+    ]=]
 	new: (taskDelay: typeof(NumberOptBuildType:type()), autoRun: typeof(gt.optional(gt.boolean()))) -> Queue,
+
+	--[=[
+		@within Queue
+
+		Add a array to run in the queue
+
+		```luau
+        queue:add(function() 
+			print('world')
+		end)
+        ```
+
+		@param func -- Function to add
+	]=]
 	add: (self: Queue, func: typeof(FunctionBuildType:type())) -> (),
+
+	--[=[
+		@within Queue
+
+		Execute functions on a array
+
+		```luau
+        queue:run()
+        ```
+	]=]
 	run: (self: Queue) -> (),
+
+	--[=[
+		@within Queue
+
+		Remove function from array
+
+		```luau
+        queue:remove()
+        ```
+
+		@param index -- Position of the function in the array
+	]=]
 	remove: (self: Queue, typeof(NumberOptBuildType:type())) -> (),
 }
 
