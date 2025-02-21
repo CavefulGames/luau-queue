@@ -3,7 +3,7 @@ version = "0.1.0"
 description = "queue"
 authors = ["kimpure"]
 license = "MIT"
-includes = [ "src/**", "pesde.toml", "LICENCE.md", "README.md" ]
+includes = [ "src/**", "pesde.toml", "LICENCE", "README.md" ]
 
 [engines]
 lune = "^0.8.9"
