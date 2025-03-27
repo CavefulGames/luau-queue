@@ -10,6 +10,8 @@ local QueueBuildType = gt.build(gt.table({
 	autoRun = gt.optional(gt.boolean()),
 	isRun = gt.boolean(),
 	queue = gt.struct({ [gt.number()] = gt.anyfn() }),
+	front = gt.number(),
+	back = gt.number()
 }))
 
 export type Queue = typeof(setmetatable({} :: typeof(QueueBuildType:type()), {} :: QueueImpl))
@@ -74,12 +76,25 @@ type QueueImpl = {
 		@param index -- Position of the function in the array
 	]=]
 	remove: (self: Queue, typeof(NumberOptBuildType:type())) -> (),
+
+	--[=[
+		@within Queue
+
+		Check the value is queue
+
+		```luau
+        queue.is(value)
+        ```
+
+		@param value -- check target value
+	]=]
+	is: (value: any) -> boolean,
 }
 
 local Queue = {} :: QueueImpl
 Queue.__index = Queue
 
-local function queueIs(value)
+function Queue.is(value)
 	if type(value) == "table" and getmetatable(value) == Queue then
 		QueueBuildType:assert(value)
 
@@ -88,7 +103,7 @@ local function queueIs(value)
 	return false
 end
 
-local QueueType = gt.build(gt.custom(queueIs, "Queue") :: Queue)
+local QueueType = gt.build(gt.custom(Queue.is, "Queue") :: Queue)
 
 function Queue.new(taskDelay, autoRun)
 	NumberOptBuildType:assert(taskDelay)
@@ -97,13 +112,16 @@ function Queue.new(taskDelay, autoRun)
 		autoRun=autoRun,
 		isRun=false,
 		queue={},
+		front = 1,
+		back = 0,
 	}, Queue)
 end
 
 function Queue.add(self, func)
 	QueueType:assert(self)
 	FunctionBuildType:assert(func)
-	self.queue[#self.queue + 1] = func
+	self.back = self.back + 1
+    self.queue[self.back] = func
 
 	if self.autoRun then
 		self:run()
@@ -113,7 +131,8 @@ end
 function Queue.remove(self, index)
 	QueueType:assert(self)
 	NumberOptBuildType:assert(index)
-	self.queue[index or #self.queue] = nil
+	self.queue[index or self.front] = nil
+	self.front += index and 0 or 1
 end
 
 function Queue.run(self)
@@ -126,14 +145,27 @@ function Queue.run(self)
 	self.isRun = true
 
 	local function run()
-		while #self.queue > 0 do
-			(table.remove(self.queue, 1) :: any)()
-			
+		while self.front <= self.back do
+			local func = self.queue[self.front]
+			self.front += 1
+
+			if not func then
+				continue
+			end
+
+			func()
+
 			if self.taskDelay and self.taskDelay ~= 0 then
 				task.wait(self.taskDelay)
 			end
 
-			self.isRun = false
+		end
+		
+		self.isRun = false
+
+		if self.front > self.back then
+			self.front = 0
+			self.back = 1
 		end
 	end
 
