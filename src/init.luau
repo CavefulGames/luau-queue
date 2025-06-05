@@ -1,5 +1,5 @@
-local gt = require("../luau_packages/greentea_luau")
-local task = require('../lune_packages/task')
+local gt = require("./luau_packages/greentea_luau")
+local task = require("./lune_packages/task")
 
 local NumberOptBuildType = gt.build(gt.optional(gt.number()))
 
@@ -11,7 +11,7 @@ local QueueBuildType = gt.build(gt.table({
 	isRun = gt.boolean(),
 	queue = gt.struct({ [gt.number()] = gt.anyfn() }),
 	front = gt.number(),
-	back = gt.number()
+	back = gt.number(),
 }))
 
 export type Queue = typeof(setmetatable({} :: typeof(QueueBuildType:type()), {} :: QueueImpl))
@@ -108,10 +108,10 @@ local QueueType = gt.build(gt.custom(Queue.is, "Queue") :: Queue)
 function Queue.new(taskDelay, autoRun)
 	NumberOptBuildType:assert(taskDelay)
 	return setmetatable({
-		taskDelay=taskDelay,
-		autoRun=autoRun,
-		isRun=false,
-		queue={},
+		taskDelay = taskDelay,
+		autoRun = autoRun,
+		isRun = false,
+		queue = {},
 		front = 1,
 		back = 0,
 	}, Queue)
@@ -121,7 +121,7 @@ function Queue.add(self, func)
 	QueueType:assert(self)
 	FunctionBuildType:assert(func)
 	self.back = self.back + 1
-    self.queue[self.back] = func
+	self.queue[self.back] = func
 
 	if self.autoRun then
 		self:run()
@@ -158,9 +158,8 @@ function Queue.run(self)
 			if self.taskDelay and self.taskDelay ~= 0 then
 				task.wait(self.taskDelay)
 			end
-
 		end
-		
+
 		self.isRun = false
 
 		if self.front > self.back then
@@ -173,7 +172,7 @@ function Queue.run(self)
 		task.defer(run)
 	else
 		run()
-	end	
+	end
 end
 
 return Queue
