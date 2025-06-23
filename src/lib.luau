@@ -1,5 +1,5 @@
-local gt = require("./luau_packages/greentea_luau")
-local task = require("./lune_packages/task")
+local gt = require("../luau_packages/greentea_luau")
+local task = require("../lune_packages/task")
 
 local NumberOptBuildType = gt.build(gt.optional(gt.number()))
 
